@@ -1,0 +1,10 @@
+version: '3'
+services:
+  uwsgi-endpoint:
+    build: uwsgi
+    ports:
+      - '8080:80'
+    links:
+      - mongo
+  mongo:
+    image: mongo

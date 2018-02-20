@@ -1,12 +1,12 @@
 FROM alpine
 
-
-RUN apk update && apk add python3 uwsgi-python3 
-RUN pip3 install Flask flask-restful pymongo flask-pymongo
-
+RUN apk update && apk add python3 uwsgi-python3
 
 RUN mkdir -pv /data/www/
-ADD inventory/ /data/www/inventory/
-ADD inventory.ini /etc/uwsgi/conf.d/
+COPY requirements.txt /data/www/
+RUN cd /data/www; pip3 install -r requirements.txt
+
+COPY inventory/ /data/www/inventory/
+COPY inventory.ini /etc/uwsgi/conf.d/
 
 CMD cd /data/www/; uwsgi --ini /etc/uwsgi/conf.d/inventory.ini

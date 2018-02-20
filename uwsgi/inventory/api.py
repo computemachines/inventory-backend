@@ -1,8 +1,10 @@
+
+
 def thing_id_get(thingId):
     print(thingId)
-    return {"hello": "worlds"}, 200
+    return {"thingId": thingId}, 200
 def thing_id_post(thingId, data):
-    pass
+    return data, 201
 def bin_id_get(id):
     pass
 def test_get(arg):

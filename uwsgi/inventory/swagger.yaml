@@ -8,7 +8,7 @@ paths:
   /thing/{thingId}:
     get:
       description: "Returns a thing by thing id"
-      operationId: "api.thing_id_get"
+      operationId: "inventory.api.thing_id_get"
       produces:
       - "application/json"
       parameters:
@@ -23,10 +23,9 @@ paths:
             $ref: "#/definitions/thing"
         404:
           description: "Thing not found."
-
     post:
       description: "Adds new thing"
-      operationId: "api.thing_id_post"
+      operationId: "inventory.api.thing_id_post"
       consumes:
       - "application/json"
       parameters:
@@ -50,7 +49,7 @@ paths:
     get:
       description: "Returns a bin by bin id"
       operationId: "bin_id_get"
-      x-swagger-router-controller: "api"
+      x-swagger-router-controller: "inventory.api"
       produces:
       - "application/json"
       parameters:

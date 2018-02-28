@@ -1,10 +1,13 @@
 version: '3'
 services:
-  uwsgi-endpoint:
-    build: uwsgi
+  # nginx servers static files and is a proxy for api-endpoint
+  nginx:
+    build: nginx
     ports:
-      - '5001:5000'
-    links:
-      - mongo
+      - '8080:80'
+  api-endpoint:
+    build: uwsgi-api-server
+    # ports:
+    #   - '80:5000'
   mongo:
     image: mongo

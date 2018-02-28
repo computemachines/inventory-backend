@@ -1,4 +1,5 @@
 const {resolve} = require("path")
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = () => {
   return {
@@ -17,18 +18,21 @@ module.exports = () => {
     },
     module: {
       rules: [{
-	test: /\.js$/,
-	exclude: /(node_modules)/,
-	use: {
-	  loader: "babel-loader",
-	  options: {
-	    presets: ["es2015", "react"]
-	  }
-	}
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["es2015", "react"]
+          }
+        }
       }, {
-	test: /\.css$/,
-	use: ['style-loader', 'css-loader']
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       }]
-    }
+    },
+    plugins: [
+      new CopyWebpackPlugin([{from: 'index.html', to: '../index.html'}])
+    ]
   }
 }

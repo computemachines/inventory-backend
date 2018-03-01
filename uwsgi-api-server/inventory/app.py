@@ -1,9 +1,50 @@
-import connexion
+from flask import Flask
+from flask import request
+from flask.json import jsonify
+import json
+from bson.json_util import dumps
 
-app = connexion.FlaskApp("inventory_api")
-flask_app = app.app
 
-app.add_api("inventory/swagger.yaml")
+app = Flask(__name__)
 
-print("Running Flask App")
-app.run()
+
+@app.route('/api/things', methods=['PUT'])
+def things_put():
+    print(request.json)
+    data = request.json
+    label = data["label"]
+    db.things.insert_one(data)
+    ret = db.things.find_one({"label": label})
+    return dumps(ret), 201
+
+@app.route('/api/thing/<int:label>')
+def thing(label):
+    thing = db.things.find_one({"label": label})
+    return dumps(thing), 200
+
+@app.route('/api/bins')
+def index():
+    pass
+
+@app.route('/api/bin/<label>')
+def bin(label):
+    pass
+
+from pymongo import MongoClient
+from pymongo.errors import ConnectionFailure
+
+DEBUG = __name__=='__main__'
+if DEBUG:
+    db_host = "localhost"
+else:
+    db_host = "mongo"
+    import time
+    time.sleep(5)
+print(db_host)
+client = MongoClient(db_host, 27017)
+print("Connected to MongoDB")
+db = client.inventorydb
+print(db.things.find_one())
+
+if __name__=='__main__':
+    app.run()

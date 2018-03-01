@@ -11,7 +11,9 @@ COPY inventory-nginx.conf /etc/nginx/conf.d/
 
 run mkdir -pv /run/nginx
 
-RUN nginx -t
+# CMD cat /etc/resolv.conf
+
+# RUN nginx -t
 CMD ["nginx", "-g", "daemon off;"]
 
 # COPY inventory/ /data/www/inventory/

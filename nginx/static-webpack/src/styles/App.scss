@@ -1,0 +1,32 @@
+// $mdc-theme-primary: black;
+// $mdc-theme-secondary: green;
+// $mdc-theme-on-primary: red;
+// $mdc-theme-on-secondary: blue;
+
+@import "@material/button/mdc-button";
+
+.app-button {
+    // @extend .mdc-button;
+    @include mdc-button-ink-color(red);
+    @include mdc-states(red);
+}
+
+
+.app-bar {
+    display: flex;
+    justify-content: center;
+    background-color: #222;
+}
+
+
+.app-bar-title {
+    font-family: "roboto";
+    font-size: 2em;
+    font-weight: 200;
+    color: #eee;
+}
+
+.content {
+    height: 100em;
+
+}

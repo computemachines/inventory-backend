@@ -17,18 +17,23 @@ def things_put():
     ret = db.things.find_one({"label": label})
     return dumps(ret), 201
 
-@app.route('/api/thing/<int:label>')
+@app.route('/api/thing/<int:label>', methods=['GET'])
 def thing(label):
     thing = db.things.find_one({"label": label})
     return dumps(thing), 200
 
-@app.route('/api/bins')
-def index():
-    pass
+@app.route('/api/bins', methods=['PUT'])
+def bins_put():
+    data = request.json
+    db.bins.insert_one(data)
+    return dumps(db.bins.find_one({'label': data['label']})), 201
 
-@app.route('/api/bin/<label>')
+@app.route('/api/bin/<label>', methods=['GET'])
 def bin(label):
-    pass
+    ret = db.bins.find_one({"label": label})
+    print(ret)
+    return dumps(ret), 200
+
 
 from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure
@@ -44,7 +49,7 @@ print(db_host)
 client = MongoClient(db_host, 27017)
 print("Connected to MongoDB")
 db = client.inventorydb
-print(db.things.find_one())
+print(db.bins.find_one())
 
 if __name__=='__main__':
-    app.run()
+    app.run(port=8080, debug=True)

@@ -13,3 +13,14 @@ services:
       - mongo
   mongo:
     image: mongo
+
+  mongo-backup:
+    image: "istepanov/mongodump:3.4"
+    volumes:
+      - mongo-backup:/backup
+    environment:
+      CRON_SCHEDULE: '0 1 * * *'
+    depends_on:
+      - mongo
+volumes:
+  mongo-backup:

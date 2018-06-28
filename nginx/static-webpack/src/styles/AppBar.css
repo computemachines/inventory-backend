@@ -1,0 +1,46 @@
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.appBar {
+  margin: 0;
+  box-shadow: rgba(0, 1, 0, 0.12) 0px 1px 6px, rgba(1, 0, 0, 0.12) 0px 1px 4px;
+  background: #00BCD4;
+  position: relative;
+}
+
+
+.appBar nav {
+  display: block;
+  float: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+nav a {
+  padding: 8px;
+  padding-bottom: 4px;
+  margin-right: 4px;
+  display: inline-block;
+  background-color: white;
+  color: black;
+  text-decoration: none;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.appBar h1 {
+  margin: auto;
+  display: inline-block;
+  margin-left: 1em;
+  margin-right: 1em;
+  font-family: Roboto, 'sans-serif';
+  font-weight: 400;
+  height: 64px;
+  line-height: 64px;
+  font-size: 24px;
+  color: white;
+}

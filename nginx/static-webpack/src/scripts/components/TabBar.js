@@ -1,26 +1,31 @@
-import {mdcTabBar, mdcTab, mdcTabActive,
-	mdcTabBarIndicator} from '@material/tabs/mdc-tabs.scss'
-import {MDCTab, MDCTabBar, MDCTabFoundation} from '@material/tabs';
+import '../../styles/TabBar.scss'
 
-import  {appBarTabs} from '../../styles/TabBar.scss'
+import '@material/tabs/mdc-tabs.scss'
+import '@material/tabs'
 
-import React from 'react';
+
+import React from 'react'
+import {MDCTab, MDCTabFoundation} from '@material/tabs';
+import {MDCTabBar, MDCTabBarFoundation} from '@material/tabs';
 
 class TabBar extends React.Component {
-  componentDidMount() {
-    
+  constructor(props) {
+    super(props)
+    this._ref = React.createRef()
   }
-  componentWillUnmount() {
-    console.log("tabbar unmounting")
+  componentDidMount() {
+    MDCTabBar.attachTo(this._ref.current);
   }
   render() {
     return (
-      <nav id="basic-tab-bar" className={`${appBarTabs}`}>
-	<a className={`${mdcTab} ${mdcTabActive}`} href="#one">Search</a>
-	<a className={`${mdcTab}`} href="#two">New</a>
-	<a className={`${mdcTab}`} href="#three">Move</a>
-	<a className={mdcTab} href="#four">Audit</a>
-	<span className={`${mdcTabBarIndicator}`}></span>
+      <nav ref={this._ref}
+	   id="#my-mdc-tab-bar"
+	   className='app-bar-tabs mdc-tab-bar'>
+	<a className='mdc-tab mdc-tab--active' href="#one">Search</a>
+	<a className='mdc-tab' href="#two">New</a>
+	<a className='mdc-tab' href="#three">Move</a>
+	<a className='mdc-tab' href="#four">Audit</a>
+	<span className='mdc-tab-bar__indicator'></span>
       </nav>
     )
   }

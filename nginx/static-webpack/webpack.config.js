@@ -6,7 +6,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = () => {
   return {
     context: resolve("src"),
-    entry: ["./scripts/entry.js", "@material/button/mdc-button.scss"],
+    entry: ["./scripts/entry.js"],
     output: {
       path: resolve("dist/assets"),
       publicPath: "/assets/",
@@ -30,43 +30,23 @@ module.exports = () => {
           }
         }
       }, {
-        test: /\.css$/,
-        use: [{
-          loader: 'style-loader'
-        }, {
-          loader: 'css-loader',
-          options: {
-	    modules: true,
-	    camelCase: true,
-	    localIdentName: '[name]__[local]___[hash:base64:5]'
-          }
-        }]
+	test: /\.css$/,
+	use: ['style-loader', 'css-loader']
       }, {
-	test: /\.scss$/,
-	exclude: ['./src'],
-	use: [{loader: 'echo-loader?msg=sassEnd'}, {loader: 'style-loader'},
+        test: /\.scss$/,
+	use: [{loader: 'style-loader'},
 	      {loader: 'css-loader'},
 	      {loader: 'sass-loader',
 	       options: {
 		 includePaths: ['./node_modules']
-	       }
-	      }, {loader: 'echo-loader?msg=sassHead'}]
-      },{
-	test: /\.scss$/,
-	exclude: ['./node_modules'],
-	use: [{loader: 'echo-loader?msg=moduleSassEnd'}, {loader: 'style-loader'},
-	      {loader: 'css-loader',
-	       options: {
-		 modules: true,
-		 camelCase: true,
-		 // includePaths: ['./node_modules'],
-		 localIdentName: '[name]__[local]___[hash:base64:5]'
-               }
-	      },
-	      {loader: 'sass-loader',
-	       options: {
-		 includePaths: ['./node_modules']
-	       }}, {loader: 'echo-loader?msg=moduleSassHead'}]
+	       }}]
+	//   use: [
+	//     {loader: 'css-loader'},
+	//     {loader: 'sass-loader',
+	//      option: {
+	//        includePaths: ['./node_modules']
+	//      }}
+	//   ]
       }, {
 	test: /\.(woff|woff2)$/,
 	use: [{

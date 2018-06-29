@@ -14,7 +14,10 @@ class TabBar extends React.Component {
     this._ref = React.createRef()
   }
   componentDidMount() {
-    MDCTabBar.attachTo(this._ref.current);
+    this.mdc = MDCTabBar.attachTo(this._ref.current);
+  }
+  componentWillUnmount() {
+    this.mdc.destroy()
   }
   render() {
     return (

@@ -12,11 +12,13 @@ module.exports = () => {
       publicPath: "/assets/",
       filename: "bundle.js"
     },
+    mode: 'development',
     devtool: 'source-maps',
     devServer: {
       contentBase: resolve("dist"),
       historyApiFallback: true,
-      port:8080
+      port:8080,
+      host:'0.0.0.0'
     },
     module: {
       rules: [{
@@ -66,7 +68,6 @@ module.exports = () => {
       }]
     },
     plugins: [
-      new ExtractTextPlugin("styles.css"),
       new CopyWebpackPlugin([{
 	from: 'index.html', to: '../index.html'
       }])

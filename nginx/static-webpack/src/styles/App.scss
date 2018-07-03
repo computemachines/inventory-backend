@@ -3,14 +3,9 @@
 // $mdc-theme-on-primary: red;
 // $mdc-theme-on-secondary: blue;
 
-@import "@material/button/mdc-button";
-
-.app-button {
-    // @extend .mdc-button;
-    @include mdc-button-ink-color(red);
-    @include mdc-states(red);
+input {
+    padding: 0
 }
-
 
 .app-bar {
     display: flex;
@@ -24,9 +19,4 @@
     font-size: 2em;
     font-weight: 200;
     color: #eee;
-}
-
-.content {
-    height: 100em;
-
 }

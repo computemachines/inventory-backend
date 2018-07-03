@@ -1,0 +1,10 @@
+// Bug fix
+.mdc-text-field__input {
+    height: inherit !important;
+}
+
+.text-field {
+    // min-width: 10em;
+    margin: 0.5em;
+    flex: 1 1 11em;
+}

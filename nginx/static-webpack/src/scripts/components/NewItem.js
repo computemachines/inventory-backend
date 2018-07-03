@@ -4,7 +4,16 @@ import TextField from './TextField'
 import '../../styles/NewItem.scss'
 import '@material/button/mdc-button.scss'
 
+
 class NewItem extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      itemLabelValue: '',
+      containerLabelValue: '',
+      itemNameValue: ''
+    }
+  }
   render() {
     return (
       <form className="new-item-form">

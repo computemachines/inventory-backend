@@ -1,0 +1,17 @@
+.new-item-form {
+    max-width: 30em;
+    margin: 1em auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.new-item-form:before, .new-item-form:after {
+    content: '';
+    width: 100%;
+    order: 1;
+}
+
+.submit-button {
+    order: 2;
+    margin-left: auto;
+}

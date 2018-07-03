@@ -5,7 +5,7 @@ RUN apk update && apk add nginx nodejs-npm
 RUN mkdir -pv /data/www/
 COPY static-webpack/ /data/www/static-webpack
 RUN cd /data/www/static-webpack; npm i
-RUN cd /data/www/static-webpack; npm run build:dev
+RUN cd /data/www/static-webpack; npm run build
 RUN rm /etc/nginx/conf.d/default.conf
 COPY inventory-nginx.conf /etc/nginx/conf.d/
 

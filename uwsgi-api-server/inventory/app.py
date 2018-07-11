@@ -8,18 +8,25 @@ from bson.json_util import dumps
 app = Flask(__name__)
 
 
-@app.route('/api/things', methods=['PUT'])
-def things_put():
-    print(request.json)
-    data = request.json
+@app.route('/api/things', methods=['POST'])
+def things_post():
+    print(request)
+    print(request.form.to_dict())
+    data = request.form.to_dict()
     label = data["label"]
     db.things.insert_one(data)
     ret = db.things.find_one({"label": label})
     return dumps(ret), 201
 
-@app.route('/api/thing/<int:label>', methods=['GET'])
+@app.route('/api/things', methods=['GET'])
+def things_get():
+    all_things = db.things.find()
+    return dumps(all_things), 200
+
+@app.route('/api/thing/<label>', methods=['GET'])
 def thing(label):
     thing = db.things.find_one({"label": label})
+    print(label)
     return dumps(thing), 200
 
 @app.route('/api/bins', methods=['PUT'])

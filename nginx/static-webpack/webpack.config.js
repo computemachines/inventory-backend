@@ -17,18 +17,24 @@ module.exports = () => {
     devServer: {
       contentBase: resolve("dist"),
       historyApiFallback: true,
-      port:8080,
-      host:'0.0.0.0'
+      port:8081,
+      host:'0.0.0.0',
+      headers: {
+	"Access-Control-Allow-Origin": "*",
+	"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+	"Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+      }
     },
     module: {
       rules: [{
         test: /\.js$/,
-        exclude: /(node_modules)/,
+        // exclude: /(node_modules)/,
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["es2015", "react"],
-	    plugins: ["react-hot-loader/babel"]
+            presets: ["@babel/env", "@babel/react"],
+	    plugins: ["transform-object-set-prototype-of-to-assign",
+		      "react-hot-loader/babel"]
           }
         }
       }, {

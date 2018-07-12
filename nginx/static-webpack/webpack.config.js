@@ -19,11 +19,17 @@ module.exports = () => {
       historyApiFallback: true,
       port:8081,
       host:'0.0.0.0',
-      headers: {
-	"Access-Control-Allow-Origin": "*",
-	"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-	"Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+      proxy: {
+	'/api': {
+	  target: 'localhost:8080',
+	  secure: false
+	}
       }
+      // headers: {
+      // 	"Access-Control-Allow-Origin": "*",
+      // 	"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      // 	"Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+      // }
     },
     module: {
       rules: [{

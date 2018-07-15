@@ -15,6 +15,7 @@ import TabBar from './components/TabBar'
 import Tab from './components/Tab'
 import Form from './components/Form'
 import NewItem from './components/NewItem'
+import ListItems from './components/ListItems'
 
 import { Route, withRouter } from 'react-router-dom'
 
@@ -32,6 +33,7 @@ const App = () =>
 	      <Tab to="/audit">Audit</Tab>
 	    </TabBar>
 	    <Route path="/new" component={NewItem}/>
+	    <Route path="/audit" component={ListItems}/>
 	    <Form />
 	  </React.Fragment>
 	)

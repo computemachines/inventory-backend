@@ -17,13 +17,10 @@ module.exports = () => {
     devServer: {
       contentBase: resolve("dist"),
       historyApiFallback: true,
-      port:8081,
+      port:8082,
       host:'0.0.0.0',
       proxy: {
-	'/api': {
-	  target: 'localhost:8080',
-	  secure: false
-	}
+	'/api': 'http://localhost:8080'
       }
       // headers: {
       // 	"Access-Control-Allow-Origin": "*",

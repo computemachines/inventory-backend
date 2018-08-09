@@ -1,12 +1,14 @@
-import React from 'react'
+import '../../styles/AuditItems.scss'
 
+import React from 'react'
 import $ from 'jquery'
 
-import '@material/list/mdc-list.scss'
-import "@material/typography/mdc-typography.scss"
+// import '@material/list/mdc-list.scss'
 
+import ListItem from './ListItem'
+// import ItemDetails from './ItemDetails'
 
-class ListItems extends React.Component {
+class AuditItems extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -29,14 +31,14 @@ class ListItems extends React.Component {
   render() {
     console.log("render")
     console.log(this.state)
+    const listItems = this.state.items.map((item, i) => {
+      return <ListItem item={item}/>
+    })
+
     return (
       <React.Fragment>
-	<h1 className="mdc-typography">All Items</h1>
-	<ul className='mdc-list'>
-	  {this.state.items.map((item, i) => {
-	    return <li key={item['_id']['$oid']}
-			 className='mdc-list-item'>{item['name']}</li>
-	  })}
+	<ul>
+	  {listItems}
 	</ul>
       </React.Fragment>
     )
@@ -44,4 +46,4 @@ class ListItems extends React.Component {
 }
 
 
-export default ListItems
+export default AuditItems

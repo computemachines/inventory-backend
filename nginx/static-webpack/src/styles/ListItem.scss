@@ -1,0 +1,29 @@
+.list-item {
+    // height: 100px;
+}
+
+.list-item--top-line {
+    display: block;
+    margin-bottom: 0.2em;
+    ul {
+	float: right;
+	li {
+	    display: inline;
+	    margin-left: 0.6em
+	}
+    }
+}
+
+.list-item--field-name {
+    font-weight: 700;
+    padding-right: 0.6em;
+    text-transform: uppercase;
+}
+
+.list-item--field-value {
+    margin-right: 2em;
+}
+
+.list-item--details {
+    display: none;
+}

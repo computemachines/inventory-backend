@@ -3,10 +3,11 @@ import '../../styles/ListItem.scss'
 import React from 'react'
 import $ from 'jquery'
 
+import ItemDetails from './ItemDetails'
+
 class ListItem extends React.Component {
   constructor(props) {
     super(props)
-    this.item = props.item
     this.state = {
       showDetail: false,
       editing: false,
@@ -69,7 +70,7 @@ class ListItem extends React.Component {
     console.log("TODO")
   }
   render() {
-    const item = this.item
+    const item = this.props.item
 
     const link = (name, handler) => (
       <li><a href="#" onClick={handler}>{name}</a></li>)
@@ -98,10 +99,8 @@ class ListItem extends React.Component {
 	</div>
 	<div ref={this._details_ref}
 	     className="list-item--details">
-	  <span className="list-item--field-name">Location Label</span>
-	  <span className="list-item--field-value">{item.bin}</span>
-	  <span className="list-item--field-name">Item Label</span>
-	  <span className="list-item--field-value">{item.label}</span>
+	  <ItemDetails editable={this.state.editing}
+		       item={item}/>
 	</div>
       </li>
     )

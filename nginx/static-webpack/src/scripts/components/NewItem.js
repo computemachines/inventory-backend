@@ -20,7 +20,9 @@ class NewItem extends React.Component {
     this.state = {
       itemLabelValue: '',
       containerLabelValue: '',
-      itemNameValue: ''
+      itemNameValue: '',
+      quantityValue: 1,
+      notesValue: ''
     }
     this._snackbar_ref = React.createRef()
   }
@@ -36,7 +38,9 @@ class NewItem extends React.Component {
 	      url: "/api/things",
 	      data: {label: this.state.itemLabelValue,
 		     bin: this.state.containerLabelValue,
-		     name: this.state.itemNameValue},
+		     name: this.state.itemNameValue,
+		     quantity: this.state.quantityValue,
+		     notes: this.state.notesValue},
 	      success: (data, status) => {
 		this.snackbar.show(
 		  {message: `Submitted ${data.name} in ${data.bin}`}
@@ -45,6 +49,8 @@ class NewItem extends React.Component {
 		  itemLabelValue: '',
 		  containerLabelValue: '',
 		  itemNameValue: '',
+		  quantityValue: 1,
+		  notesValue: ''
 		})
 	      },
 	      error: (req, status, error) => {
@@ -79,6 +85,22 @@ class NewItem extends React.Component {
 	      onChange={(e)=>{
 		console.log("value changed")
 		this.setState({itemNameValue: e.target.value})
+	      }}/>
+	  </TextField>
+	  <TextField id="quantity-label" label="Quantity" className="text-field">
+	    <Input
+	      value={this.state.quantityValue}
+	      onChange={(e)=>{
+		console.log("value changed")
+		this.setState({quantityValue: e.target.value})
+	      }}/>
+	  </TextField>
+	  <TextField id="notes-label" label="Notes" className="text-field">
+	    <Input
+	      value={this.state.notesValue}
+	      onChange={(e)=>{
+		console.log("value changed")
+		this.setState({notesValue: e.target.value})
 	      }}/>
 	  </TextField>
 	  <button className="submit-button mdc-button">Submit</button>

@@ -7,6 +7,11 @@ services:
       - '80:80'
     depends_on:
       - uwsgi
+      - lychee
+
+  lychee:
+    image: "kdelfour/lychee-docker"
+    
   uwsgi:
     build: uwsgi-api-server
     depends_on:

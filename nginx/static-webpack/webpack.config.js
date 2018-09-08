@@ -79,6 +79,8 @@ module.exports = () => {
     plugins: [
       new CopyWebpackPlugin([{
 	from: 'index.html', to: '../index.html'
+      }, {
+	from: '../images', to: '.'
       }])
     ]
   }
